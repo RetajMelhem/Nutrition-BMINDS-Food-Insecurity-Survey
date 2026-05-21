@@ -2,9 +2,9 @@
 
 ## Overview
 
-This repository is a survey-analysis workspace centered on food insecurity, resilience, stress mindset, and psychological distress. The main executable artifact is the notebook `data_visualization_v3.ipynb`, supported by a cleaned Excel export, two Word reports, and a presentation file.
+This repository contains my survey analysis work on food insecurity, resilience, stress mindset, and psychological distress. The main analysis is done in `data_visualization_v3.ipynb`, with the cleaned Excel output, written reports, and presentation included in the same folder.
 
-Based on the files present in this folder, this repository is a research deliverable rather than a conventional software application.
+The project is mainly a research and data-analysis deliverable, not a full software application.
 
 ## Repository Contents
 
@@ -17,34 +17,33 @@ Based on the files present in this folder, this repository is a research deliver
 `-- technical report.docx
 ```
 
-## Verified Components
+## Main Files
 
 ### `data_visualization_v3.ipynb`
 
-The notebook contains the analysis workflow. From the code in the notebook, it:
+This notebook contains the main data cleaning, processing, visualization, and statistical analysis steps. It includes:
 
-- imports `pandas`, `numpy`, `scipy.stats`, `seaborn`, `matplotlib`, and `google.colab.files`
-- uploads an Excel dataset interactively
-- inspects missing values and unique values
-- removes duplicate rows
-- standardizes text values by lowercasing and trimming
-- drops columns with more than 5% missing values
-- drops remaining rows with missing values
-- creates derived metrics for food insecurity, resilience, stress mindset, and psychological distress
-- encodes selected categorical variables for analysis
-- runs Shapiro-Wilk, Spearman correlation, and Mann-Whitney U analyses
-- creates charts including pie charts, histograms, bar charts, and violin plots
-- exports the processed dataset to `cleaned.xlsx`
+- loading the survey data from an Excel file
+- checking missing values and unique values
+- removing duplicate rows
+- cleaning text values by converting them to lowercase and removing extra spaces
+- removing columns with more than 5% missing values
+- removing any remaining rows with missing values
+- creating new calculated measures for food insecurity, resilience, stress mindset, and psychological distress
+- encoding selected categorical columns for analysis
+- applying statistical tests such as Shapiro-Wilk, Spearman correlation, and Mann-Whitney U
+- creating visualizations such as pie charts, histograms, bar charts, and violin plots
+- exporting the cleaned dataset as `cleaned.xlsx`
 
 ### `cleaned.xlsx`
 
-This file appears to be the cleaned output produced by the notebook. The inspected workbook contains:
+This file is the cleaned dataset generated from the notebook. It contains:
 
-- one sheet: `Sheet1`
+- one worksheet: `Sheet1`
 - 863 rows
 - 103 columns
 
-The sheet includes both survey fields and derived columns such as:
+It includes the original survey fields along with calculated columns such as:
 
 - `FIES_score`
 - `FIES_level`
@@ -58,59 +57,45 @@ The sheet includes both survey fields and derived columns such as:
 
 ### Reports and Presentation
 
-- `technical report.docx` describes the methodology, cleaning decisions, statistical tests, and reported findings.
+- `technical report.docx` explains the methodology, data-cleaning steps, statistical tests, and findings.
 - `Analytical Report.docx` summarizes the analysis, observations, and recommendations.
-- `pres.pptx` is a presentation artifact included in the repository.
+- `pres.pptx` contains the presentation prepared for the project.
 
-## Tech Stack
+## Tools and Libraries Used
 
-Identified directly from `data_visualization_v3.ipynb`:
+The notebook uses:
 
 - Python
 - Jupyter Notebook
-- Google Colab-style file upload and download workflow
+- Google Colab file upload workflow
 - `pandas`
 - `numpy`
 - `scipy`
 - `seaborn`
 - `matplotlib`
 
-## Running the Notebook
+## How to Run the Notebook
 
-The notebook contains this upload flow:
+Open `data_visualization_v3.ipynb` in Google Colab or a similar notebook environment.
 
-```python
-from google.colab import files
-uploaded = files.upload()
-df = pd.read_excel(list(uploaded.keys())[0], sheet_name=0)
-```
+When running the notebook, upload the Excel file during runtime, and the notebook reads the first worksheet from that file.
 
-This indicates that the notebook expects an Excel file to be uploaded at runtime and reads the first worksheet from that file. The notebook later writes the processed result to:
+The notebook then processes the data and exports the cleaned result as:
 
-```python
-research_df.to_excel("cleaned.xlsx", index=False)
-```
-
-Because the notebook imports `google.colab.files`, it appears to have been authored for Google Colab or a similar notebook environment.
+`cleaned.xlsx`
 
 ## Analysis Scope
 
-The notebook derives and analyzes several composite measures:
+The analysis focuses on the following measures:
 
 - food insecurity using `FIES_score` and `FIES_level`
 - resilience using `Resilience_Total` and `Resilience_Level`
 - stress mindset using `StressMindset_Total` and `StressMindset_Level`
 - psychological distress using `K10_total` and `K10_category`
 
-The reports in this repository also reference analysis of relationships involving:
+The included reports also discuss relationships involving:
 
 - food security and psychological distress
 - stress mindset and gender
 - food security and household income
 - gender and GPA
-
-## Notes
-
-- No package manifest or dependency file is present in this folder.
-- No raw source dataset is included here; the repository contains the cleaned export `cleaned.xlsx`.
-- The repository does not provide formal setup automation or a reproducibility guide beyond what can be inferred from the notebook itself.
